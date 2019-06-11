@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1d31497b05b844d9cc9d89c0e8a1e4, type: 3}
+  m_Name: HandRPG
+  m_EditorClassIdentifier: 
+  gunId: 4
+  model: {fileID: 666436568052827781, guid: 9a4b37b346e850646a3ee980a65f658a, type: 3}
+  gunIcon: {fileID: 0}
+  gunName: HandRPG
+  gunPrice: 450000
+  gunSound: {fileID: 8300000, guid: 75848e11c1550084cb5a20958786eb18, type: 3}
+  isAutomatic: 0
+  energyStored: 10000
+  gunDamage: -100
+  fireRate: 1.5
+  weaponRange: 250
