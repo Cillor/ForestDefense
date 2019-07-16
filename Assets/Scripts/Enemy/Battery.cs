@@ -12,8 +12,8 @@ public class Battery : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             SaveManager.Instance.state.batterysInInventory++;
-            other.gameObject.GetComponent<AudioSource>().clip = getBattery;
-            other.gameObject.GetComponent<AudioSource>().Play();
+            other.gameObject.GetComponentInParent<AudioSource>().clip = getBattery;
+            other.gameObject.GetComponentInParent<AudioSource>().Play();
 
             Destroy(gameObject);
         }
