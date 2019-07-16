@@ -287,7 +287,7 @@ public class AlienController : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = new Vector3(transform.position.x, 1.6f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 3.6f, transform.position.z);
     }
 
     private void OnCollisionEnter(Collision collision)
