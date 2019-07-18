@@ -19,7 +19,7 @@ MonoBehaviour:
   gunPrice: 250000
   gunSound: {fileID: 8300000, guid: 29ef28bda47cc324d988801506aa7fe7, type: 3}
   isAutomatic: 1
-  energyStored: 30000
-  gunDamage: -30
-  fireRate: 0.15
-  weaponRange: 250
+  energyStored: 250000
+  gunDamage: -20
+  fireRate: 0.1
+  weaponRange: 350

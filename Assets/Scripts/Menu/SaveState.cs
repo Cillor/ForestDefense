@@ -3,7 +3,7 @@
 public class SaveState
 {
     public int batterysInInventory = 0;
-    public float wattsStored = (float)Math.Pow(10, 10) * 99;
+    public float wattsStored = (float)Math.Pow(10, 5) * 1;
     public float stamina = 100;
     public int coffeeQuantity = 0;
     public float coffeeAddiction = 0;
