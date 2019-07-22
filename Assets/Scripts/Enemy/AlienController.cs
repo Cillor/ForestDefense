@@ -82,7 +82,7 @@ public class AlienController : MonoBehaviour
         characterGeometry.SetActive(false);
         respawnTeleportFX.SetActive(false);
         StartCoroutine("SpawnCharacter");
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("PlayerBody");//GameObject.FindGameObjectWithTag("Player");
         laserLine = GetComponent<LineRenderer>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = normalMoveSpeed;
@@ -263,6 +263,7 @@ public class AlienController : MonoBehaviour
 
         laserShootSource.Play();
         laserLine.SetPosition(0, gunBarrel.position);
+        Debug.Log(gunBarrel.position);
 
         if (Physics.Raycast(gunBarrel.position, gunBarrel.forward, out hit, weaponRange, playerMask))
         {
@@ -287,7 +288,7 @@ public class AlienController : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = new Vector3(transform.position.x, 3.6f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 3.2f, transform.position.z);
     }
 
     private void OnCollisionEnter(Collision collision)

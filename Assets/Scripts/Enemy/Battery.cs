@@ -7,24 +7,47 @@ public class Battery : MonoBehaviour
     public int minimumEnergy = 300;
     public int maximumEnergy = 1500;
     public AudioClip getBattery, batteryInConverter;
+    bool canBeCollected = false;
+
+    private void Start()
+    {
+        StartCoroutine("CollectBattery");
+    }
+
+    IEnumerator CollectBattery()
+    {
+        yield return new WaitForSeconds(1f);
+        canBeCollected = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (canBeCollected)
         {
-            SaveManager.Instance.state.batterysInInventory++;
-            other.gameObject.GetComponentInParent<AudioSource>().clip = getBattery;
-            other.gameObject.GetComponentInParent<AudioSource>().Play();
 
-            Destroy(gameObject);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                SaveManager.Instance.state.batterysInInventory++;
+                other.gameObject.GetComponentInParent<AudioSource>().clip = getBattery;
+                other.gameObject.GetComponentInParent<AudioSource>().Play();
+
+                Destroy(gameObject);
+            }
+
+            if (other.gameObject.CompareTag("BatteryConverter"))
+            {
+                SaveManager.Instance.state.wattsStored += Random.Range(minimumEnergy, maximumEnergy);
+                other.gameObject.GetComponentInParent<AudioSource>().clip = batteryInConverter;
+                other.gameObject.GetComponentInParent<AudioSource>().Play();
+
+                Destroy(gameObject);
+            }
         }
 
-        if (other.gameObject.CompareTag("BatteryConverter"))
+        if (other.gameObject.CompareTag("Ground"))
         {
-            SaveManager.Instance.state.wattsStored += Random.Range(minimumEnergy, maximumEnergy);
-            other.gameObject.GetComponentInParent<AudioSource>().clip = batteryInConverter;
-            other.gameObject.GetComponentInParent<AudioSource>().Play();
-
-            Destroy(gameObject);
+            StopAllCoroutines();
+            canBeCollected = true;
         }
     }
 }
