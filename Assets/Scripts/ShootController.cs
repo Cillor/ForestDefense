@@ -60,6 +60,11 @@ public class ShootController : MonoBehaviour
         gunEnd = GameObject.FindGameObjectWithTag("GunEnd").GetComponent<Transform>();
         energyStoredTxt.text = energyStored + "W";/* + SaveManager.Instance.state.recharges;*/
 
+        RechargesUI();
+    }
+
+    void RechargesUI()
+    {
         if (SaveManager.Instance.state.recharges == 0)
         {
             bp1.SetActive(false);

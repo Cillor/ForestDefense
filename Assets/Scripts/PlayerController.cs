@@ -66,8 +66,10 @@ public class PlayerController : MonoBehaviour
         if (rb.IsSleeping())
             rb.WakeUp();
 
-        m_verticalInput = Input.GetAxisRaw("Vertical") * staminaReduceEffect.Evaluate(SaveManager.Instance.state.stamina) / 100;
-        m_horizontalInput = Input.GetAxisRaw("Horizontal") * staminaReduceEffect.Evaluate(SaveManager.Instance.state.stamina) / 100;
+        float lowStaminaEffect = staminaReduceEffect.Evaluate(SaveManager.Instance.state.stamina) / 100;
+        lowStaminaEffect = Mathf.Clamp(lowStaminaEffect, .5f, 1f);
+        m_verticalInput = Input.GetAxisRaw("Vertical") * lowStaminaEffect;
+        m_horizontalInput = Input.GetAxisRaw("Horizontal") * lowStaminaEffect;
 
         if (Mathf.Floor(rb.velocity.y) == 0 || Mathf.Floor(rb.velocity.y) == -1)
             rb.AddRelativeForce(m_horizontalInput * sideSpeed * Time.deltaTime, 0f, m_verticalInput * velocity * Time.deltaTime);

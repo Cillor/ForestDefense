@@ -447,14 +447,14 @@ MonoBehaviour:
   laserShootSource: {fileID: 1847782995}
   fastMoveSpeed: 10
   normalMoveSpeed: 4
-  attackDst: 7
+  attackDst: 20
   gunBarrel: {fileID: 5539993234001172344}
   damage: 20
-  weaponRange: 50
+  weaponRange: 100
   viewAngle: 120
-  viewDistance: 10
-  searchAreaRadius: 15
-  earRangeRadius: 5
+  viewDistance: 25
+  searchAreaRadius: 35
+  earRangeRadius: 10
   playerMask:
     serializedVersion: 2
     m_Bits: 512

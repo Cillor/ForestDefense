@@ -263,7 +263,6 @@ public class AlienController : MonoBehaviour
 
         laserShootSource.Play();
         laserLine.SetPosition(0, gunBarrel.position);
-        Debug.Log(gunBarrel.position);
 
         if (Physics.Raycast(gunBarrel.position, gunBarrel.forward, out hit, weaponRange, playerMask))
         {
