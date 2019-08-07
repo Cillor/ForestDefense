@@ -33,15 +33,15 @@ public class Battery : MonoBehaviour
 
                 Destroy(gameObject);
             }
+        }
 
-            if (other.gameObject.CompareTag("BatteryConverter"))
-            {
-                SaveManager.Instance.state.wattsStored += Random.Range(minimumEnergy, maximumEnergy);
-                other.gameObject.GetComponentInParent<AudioSource>().clip = batteryInConverter;
-                other.gameObject.GetComponentInParent<AudioSource>().Play();
+        if (other.gameObject.CompareTag("BatteryConverter"))
+        {
+            SaveManager.Instance.state.wattsStored += Random.Range(minimumEnergy, maximumEnergy);
+            other.gameObject.GetComponentInParent<AudioSource>().clip = batteryInConverter;
+            other.gameObject.GetComponentInParent<AudioSource>().Play();
 
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
 
         if (other.gameObject.CompareTag("Ground"))

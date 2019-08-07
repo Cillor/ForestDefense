@@ -10,7 +10,7 @@ public class ScreenController : MonoBehaviour
 {
     public static bool isPaused;
 
-    public GameObject Shop, LevelSelect, ShopResume, LevelSelectResume, GunShop, GunShopReturn, PauseScreen;
+    public GameObject Shop, LevelSelect, ShopResume, LevelSelectResume, GunShop, GunShopReturn, PauseScreen, OptionsScreen;
     public Image FadeScreen;
     public float openRange = 5;
     public TMP_Text popUpText, notification;
@@ -119,7 +119,7 @@ public class ScreenController : MonoBehaviour
                         OnShopOpenClose();
                     }
                 }
-                if (hit.collider.CompareTag("LevelSelector"))
+                else if (hit.collider.CompareTag("LevelSelector"))
                 {
                     popUpText.gameObject.SetActive(true);
                     popUpText.text = levelSelectorString;
@@ -127,6 +127,10 @@ public class ScreenController : MonoBehaviour
                     {
                         OCLevelSelector();
                     }
+                }
+                else if(!hit.collider.CompareTag("RecoverCenter") && !hit.collider.CompareTag("BatteryConverter"))
+                {
+                    popUpText.gameObject.SetActive(false);
                 }
             }
             else
@@ -281,6 +285,7 @@ public class ScreenController : MonoBehaviour
         {
             isPaused = false;
             PauseScreen.SetActive(false);
+            OptionsScreen.SetActive(false);
             LevelSelect.SetActive(false);
             Shop.SetActive(false);
             ShopResume.SetActive(false);

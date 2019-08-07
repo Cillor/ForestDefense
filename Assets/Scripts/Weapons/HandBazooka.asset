@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunId: 5
   model: {fileID: 666436568052827781, guid: 57af92326c3257f4894d54af90aa0199, type: 3}
-  gunIcon: {fileID: 0}
+  gunIcon: {fileID: 21300000, guid: f34eca27a9f4f4947b44d413f749db68, type: 3}
   gunName: HandBazooka
-  gunPrice: 550000
+  gunPrice: 2000000
   gunSound: {fileID: 8300000, guid: 75848e11c1550084cb5a20958786eb18, type: 3}
   isAutomatic: 0
   energyStored: 70000

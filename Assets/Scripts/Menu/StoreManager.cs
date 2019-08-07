@@ -1,20 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
 public class StoreManager : MonoBehaviour
 {
     #region Public Variables
-    public TMP_Text coffeeQuantityText, buyCoffeeText;
+    public TMP_Text coffeeQuantityText, buyCoffeeText, buyWeaponText, weaponInfoText;
     [Space]
+    public Image weaponImage;
     public Guns[] gunVetor;
     public TMP_Text[] gunsText;
     #endregion
 
     #region Private Variables
-    private int coffeeQuant;
+    private int coffeeQuant = 1;
     #endregion
     void Start()
     {
@@ -93,11 +95,39 @@ public class StoreManager : MonoBehaviour
     public void ChangeWeaponText(int ID)
     {
         Guns gun = gunVetor[ID];
-        gunsText[ID].text = gun.name + " - " + gun.gunPrice;
+        gunsText[ID].text = gun.name;
     }
 
-    public void BuyWeapon(int ID)
+    int currentWeaponID;
+    public void SelectWeapon(int ID)
     {
+        currentWeaponID = ID;
+        Guns gun = gunVetor[currentWeaponID];
+        float weaponPrice = gun.gunPrice;
+        weaponImage.sprite = gun.gunIcon;
+
+        string isAuto = "Sim";
+        if(!gun.isAutomatic)
+            isAuto = "Não";
+
+        weaponInfoText.text = "Automatico: "+ isAuto +
+        "\nEnergia: "+ Helper.WattsNomenclature(weaponPrice) + 
+        "\nDano: " + Mathf.Abs(gun.gunDamage) +
+        "\nTaxa de tiro: " + gun.fireRate + " por segundo";
+
+        if (SaveManager.Instance.state.gunIdUnlocked[gun.gunId])
+        {
+            buyWeaponText.text = "Equipar";
+        }
+        else
+        {
+            buyWeaponText.text = Helper.WattsNomenclature(weaponPrice);
+        }
+    }
+
+    public void BuyWeapon()
+    {
+        int ID = currentWeaponID;
         Guns gun = gunVetor[ID];
         string weaponName = gun.gunName;
         float weaponPrice = gun.gunPrice;
@@ -110,6 +140,7 @@ public class StoreManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Comprando");
             if (SaveManager.Instance.state.wattsStored >= weaponPrice)
             {
                 SaveManager.Instance.state.wattsStored -= weaponPrice;

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunId: 4
   model: {fileID: 666436568052827781, guid: 9a4b37b346e850646a3ee980a65f658a, type: 3}
-  gunIcon: {fileID: 0}
+  gunIcon: {fileID: 21300000, guid: 19d983be529705d4285dec9877ead87c, type: 3}
   gunName: HandRPG
-  gunPrice: 450000
+  gunPrice: 1750000
   gunSound: {fileID: 8300000, guid: 75848e11c1550084cb5a20958786eb18, type: 3}
   isAutomatic: 0
   energyStored: 50000

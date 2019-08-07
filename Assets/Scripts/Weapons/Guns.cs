@@ -9,7 +9,7 @@ public class Guns : ScriptableObject
     public int gunId;
     public GameObject model;
     [Space]
-    public Image gunIcon;
+    public Sprite gunIcon;
     public string gunName;
     public float gunPrice;
     public AudioClip gunSound;

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunId: 3
   model: {fileID: 806201323957369569, guid: 4d203399ae7853c4fa463da18f43233f, type: 3}
-  gunIcon: {fileID: 0}
+  gunIcon: {fileID: 21300000, guid: aa24353ef9618a648859007aef8f120a, type: 3}
   gunName: FullAuto Laser
-  gunPrice: 350000
+  gunPrice: 1250000
   gunSound: {fileID: 8300000, guid: 29ef28bda47cc324d988801506aa7fe7, type: 3}
   isAutomatic: 1
   energyStored: 450000
