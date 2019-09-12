@@ -29,10 +29,10 @@ public class ShootController : MonoBehaviour
     [HideInInspector]
 
     private Camera cam;
-    private WaitForSeconds shotDuration = new WaitForSeconds(.02f);
+    private WaitForSeconds shotDuration = new WaitForSeconds(.001f);
     private AudioSource gunAudio;
     private LineRenderer laserLine;
-    private float nextFire;   
+    private float nextFire;
     #endregion
 
     private void Awake()
@@ -54,7 +54,7 @@ public class ShootController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!ScreenController.isPaused)
+        if (!ScreenController.isPaused)
             KindOfGun();
 
         gunEnd = GameObject.FindGameObjectWithTag("GunEnd").GetComponent<Transform>();
@@ -96,7 +96,7 @@ public class ShootController : MonoBehaviour
         List<Transform> children = new List<Transform>();
         children.AddRange(GetComponentsInChildren<Transform>());
         children.RemoveAt(0);
-        foreach(Transform child in children)
+        foreach (Transform child in children)
         {
             Destroy(child.gameObject);
         }
@@ -121,7 +121,7 @@ public class ShootController : MonoBehaviour
             {
                 nextFire = Time.time + fireRate;
 
-                if (energyStored > 0)   
+                if (energyStored > 999)
                     Shooting();
             }
         }
@@ -131,7 +131,7 @@ public class ShootController : MonoBehaviour
             {
                 nextFire = Time.time + fireRate;
 
-                if(energyStored > 0)
+                if (energyStored > 999)
                     Shooting();
             }
         }
@@ -140,14 +140,14 @@ public class ShootController : MonoBehaviour
             Reload();
 
         //Debug.DrawRay(cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f)), cam.transform.forward * weaponRange, Color.green);
-        //Debug.DrawRay(gunEnd.position, gunEnd.forward * weaponRange, Color.red);
+        Debug.DrawRay(gunEnd.position, cam.transform.forward * weaponRange, Color.red);
     }
 
     private void Shooting()
     {
         StartCoroutine(ShotEffect());
 
-        Vector3 rayOrigin = cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+        Ray rayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
         laserLine.SetPosition(0, gunEnd.position);
 
@@ -155,7 +155,7 @@ public class ShootController : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(rayOrigin, cam.transform.forward, out hit, weaponRange))
+        if (Physics.Raycast(gunEnd.position, cam.transform.forward * weaponRange, out hit, weaponRange))
         {
             laserLine.SetPosition(1, hit.point);
 
@@ -168,22 +168,7 @@ public class ShootController : MonoBehaviour
         }
         else
         {
-            RaycastHit hitPoint;
-            if (Physics.Raycast(gunEnd.position, gunEnd.forward, out hitPoint, weaponRange))
-            {
-                laserLine.SetPosition(1, hitPoint.point);
-
-                AlienStatus aStat = hitPoint.collider.gameObject.GetComponentInParent<AlienStatus>();
-                if (aStat != null)
-                {
-                    aStat.Health(gunDamage);
-                    Instantiate(metalShootFX, hit.point, Quaternion.identity);
-                }
-            }
-            else
-            {
-                laserLine.SetPosition(1, rayOrigin + (cam.transform.forward * weaponRange));
-            }
+            laserLine.SetPosition(1, cam.transform.forward * 100000);
         }
 
         energyStored -= 1000;
@@ -212,7 +197,7 @@ public class ShootController : MonoBehaviour
     {
         gunDamage = gun.gunDamage;
         fireRate = gun.fireRate;
-        weaponRange = gun.weaponRange;     
+        weaponRange = gun.weaponRange;
         isAutomatic = gun.isAutomatic;
         energyStored = gun.energyStored;
         gunAudio.clip = gun.gunSound;
