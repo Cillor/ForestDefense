@@ -1,7 +1,9 @@
 # ForestDefense
 
-O projeto está rodando na versão 2018.3.11f1 da Unity, é recomendável usar essa versão para que não ocorra nenhum problema de compatibilidade.
-Os códigos estão extremanentes sujos, pode ser díficil encontrar o que você precisa, talvez um dia eu limpe eles e deixe a coisa mais modular.
-O que falta para definirmos que o jogo saiu da versão alfa é colocar a parte gráfica nele.
-Vários elementos gráficos já estão dentro do jogo, mas não temos um mapa oficial e nem uma interface consistente.
-Ainda faltam alguns sons.
+Defenda a humanidade contra uma brutal invasão alienígena. 
+Destrua todos os drones e use a bateria deles para carregar a energia da sua base.
+Use sua impressora 3D para criar novas armas e um pouco de café, que vai te dar energia suficiente para evitar que o efeito do veneno te paralise completamente.
+Com o metal extraído dos drones construa uma poderosa antena laser para derrubar a nave mãe e acabar com a invasão
+
+
+[![Forest Defense Gameplay](https://i.imgur.com/wKM3gJa.png)](https://www.youtube.com/watch?v=38h2Nq4ppL8)
