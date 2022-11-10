@@ -7,3 +7,4 @@
 *.meta linguist-vendored
 *.txt linguist-vendored
 *.wlt linguist-vendored
+*.js linguist-vendored
